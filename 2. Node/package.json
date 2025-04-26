@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "arquivo criado com npm init, descreve o projeto",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "lodash": "^4.17.21",
+    "node-schedule": "^2.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "senha"
+  ],
+  "author": "eu",
+  "license": "ISC"
+}

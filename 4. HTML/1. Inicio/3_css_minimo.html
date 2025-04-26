@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Básico</title>
+    <!-- corretamente, aqui seria importado o arquivo .css-->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* a maioria dos atribulos como font-size são bem autoexplicativos*/
+        h1{
+            font-size: 100px;
+        }
+
+        .fundoVermelho { /* o . é usado para criar uma classe em CSS*/
+            background-color: red;
+        }
+
+        #textoPrincipal { /* os IDs são chados por #*/
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            padding: 10px;
+            background-color: gray;
+            margin: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS</h1>
+    <span id="textoPrincipal">Texto 1</span><br> <!-- também é possivel adicionar estilos direto na tag com style="font-style: italic; -->
+    <span class="fundoVermelho negrito">Texto 2</span><br> <!-- o atributo class chama os estilos vinculados a ele para a tag-->
+    <span class="fundoVermelho">Texto 3</span>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisições</title>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+        <a href="2. Tags/1_texto.html">01 - Texto</a><br> <!-- faz o link para aoutra pagina html, o levando para ela quando clicar-->
+        <a href="2. Tags/2_lista.html">02 - Lista</a><br>
+        <a href="2. Tags/3_link.html">03 - Link</Link></a><br>
+        <a href="2. Tags/4_tabela.html">04 - Tabela</Link></a><br>
+        <a href="2. Tags/5_imagem.html">05 - Imagem</Link></a><br>
+        <a href="2. Tags/6_video.html">06 - Video</Link></a><br>
+    </nav>
+    <section id="conteudo"></section>
+    <footer>
+        <br>
+        Curso WEB moderno - Abril 2024
+    </footer>
+    <script>
+        document.querySelectorAll('a').forEach(link => { // atribuido ao link em 'a'
+            const conteudo = document.getElementById('conteudo') // chama o section, que esta ligado a essa tag
+
+            link.onclick = function (e) { // no click no link, a função roda
+                e.preventDefault() // previne de ir para a pagina prevista
+                fetch(link.href) // requisição AJAX
+                    .then(resp => resp.text())
+                    .then(html => {// vai substituir o conteudo da section para o html
+                        conteudo.innerHTML = html
+
+                        if(link.href.includes('6_video.html')){
+                            const script = document.createElement('script')
+                            script.src = "2. Tags/6_video.js"
+                            document.body.appendChild(script)
+                        }
+                    })
+            }
+        })
+    </script>
+</body> 
+</html>
