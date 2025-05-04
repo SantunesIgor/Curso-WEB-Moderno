@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trabalhando com Eventos #01</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <div>
+      <a href="https://google.com.br" espera>Google</a>
+    </div>
+    <script>
+      function navegarEm5s(e) {
+        // Navega para o link após 5 segundos
+        e.preventDefault();
+        console.log("Navegando para o Google");
+        setTimeout(() => {
+          window.location.href = e.target.href; // window.location.href muda a URL do navegador
+        }, 5000);
+      }
+
+      //   const a = document.querySelector("a");
+      //   a.onclick = navegarEm5s; // Outra forma de adicionar o evento
+
+      const a = document.querySelector("[espera]");
+      a.onclick = navegarEm5s; // Outra forma de adicionar o evento
+    </script>
+  </body>
+</html>

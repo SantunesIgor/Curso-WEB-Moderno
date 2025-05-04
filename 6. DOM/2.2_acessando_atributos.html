@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acessando Atributos #02</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <div>
+      <label for="compras">Compras</label>
+      <ul id="compras" destino="escritorio" data-urgencia="5">
+        <li>Café</li>
+        <li>Água</li>
+        <li>Copo Descartável</li>
+      </ul>
+    </div>
+    <script>
+      const lista = document.querySelector('div ul[destino="escritorio"]');
+
+      console.log('Elemento "ul"................');
+      console.log("childNodes", lista.childNodes);
+      console.log("id", lista.id);
+      // console.log("destino", lista.destino); Não funciona
+      console.log("getAttribute", lista.getAttribute("destino"));
+      console.log("hasAttribute", lista.hasAttribute("destino"));
+
+      lista.setAttribute("destino", "empresa"); // alterou o atributo destino para empresa
+      lista.setAttribute("status", "aberto"); // como o atributo status não existe, ele é a criado a partir dessa linha com o valor "aberto"
+      lista.removeAttribute("destino");
+
+      console.log(lista.dataset); // mostra todos as chaves e seus valores que começam com o prefixo "data-"
+      console.log(lista.dataset.urgencia);
+      lista.dataset.urgencia = 4;
+      console.log(lista.getAttribute("data-urgencia"));
+    </script>
+  </body>
+</html>
