@@ -23,6 +23,7 @@ body {
 }
 
 .yellowbird {
+    position: absolute;
     margin-left: 150px;
     width: 50px;
     height: 35px;
