@@ -1,40 +1,17 @@
-<<<<<<< HEAD
 let gameStarted = false;
 
 function createPipe() {
   if (!gameStarted) return;
-=======
-const yellowbird = document.getElementById("yellowbird");
-const frame = document.querySelector(".frame");
-
-let y = yellowbird.offsetTop;
-let velocity = 0;
-const gravity = 0.25;
-const jumpStrength = -5;
->>>>>>> 7d974b9cb5dc76186f9578eb00061db516c608da
 
   const frame = document.getElementById("frame");
   const bird = document.getElementById("bird");
   const pipeTemplate = document.createElement("img");
 
-<<<<<<< HEAD
   pipeTemplate.src = "assets/img/pipe.png";
   pipeTemplate.classList.add("pipe");
   pipeTemplate.style.position = "absolute";
 
   let left = 751;
-=======
-  const maxY = frame.clientHeight - yellowbird.offsetHeight;
-  if (y > maxY) {
-    y = maxY;
-    velocity = 0;
-  }
-
-  if (y < 0) {
-    y = 0;
-    velocity = 0;
-  }
->>>>>>> 7d974b9cb5dc76186f9578eb00061db516c608da
 
   const pipeTop = pipeTemplate.cloneNode(true);
   const pipeTopPosition = Math.floor(Math.random() * 300) + 200;
@@ -79,7 +56,6 @@ const jumpStrength = -5;
   }, 50);
 }
 
-<<<<<<< HEAD
 function moveBird() {
   const bird = document.getElementById("bird");
   let top = parseFloat(bird.style.top) || 200;
@@ -88,17 +64,6 @@ function moveBird() {
   const jumpStrength = -3;
   const floorLimit = 535;
   let movementAllowed = false;
-=======
-function movePipe() {
-  
-}
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "ArrowUp") {
-    velocity = jumpStrength;
-  }
-});
->>>>>>> 7d974b9cb5dc76186f9578eb00061db516c608da
 
   bird.style.position = "absolute";
   bird.style.top = top + "px";
