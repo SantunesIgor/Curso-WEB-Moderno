@@ -9,6 +9,8 @@
   <body>
     <h1>Flappy Bird</h1>
     <div class="frame" id="frame">
+      <h2 id="score" class="score">0</h2>
+      <div class="startscreen" id="startscreen"></div>
       <img
         src="assets/img/background.gif"
         alt="Background"
@@ -16,7 +18,10 @@
         class="background"
       />
       <img src="assets/img/bird.png" alt="Bird" class="bird" id="bird" />
-      <h1 class="gameover" id="gameover">Game Over</h1>
+      <div class="gameover" id="gameover">
+        <h1>Game Over</h1>
+        <p id="finalscore"></p>
+      </div>
     </div>
     <button class="start" id="start" type="button">Start</button>
   </body>

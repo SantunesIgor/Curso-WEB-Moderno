@@ -1,4 +1,5 @@
 let gameStarted = false;
+let score = 0;
 
 function createPipe() {
   if (!gameStarted) return;
@@ -37,6 +38,11 @@ function createPipe() {
     pipeBottom.style.left = left + "px";
 
     if (left === 456) createPipe();
+
+    if (left === 51) {
+      score++;
+      document.getElementById("score").textContent = score;
+    }
 
     if (left < -101) {
       pipeTop.remove();
@@ -105,9 +111,26 @@ function gameOver() {
   document.getElementById("gameover").style.opacity = "1";
   document.getElementById("background").src =
     "assets/img/backgroundstopped.png";
+  document.getElementById(
+    "finalscore"
+  ).textContent = `Você fez ${score} pontos, aperte o botão "Start" ou pressione "Enter" para continuar`;
+}
+
+function resetGame() {
+  score = 0;
+  document.getElementById("score").textContent = score;
+  document.getElementById("gameover").style.opacity = "0";
+  document.getElementById("background").src = "assets/img/background.gif";
+
+  const pipes = document.querySelectorAll(".pipe");
+  pipes.forEach(pipe => pipe.remove());
+
+  const bird = document.getElementById("bird");
+  bird.style.top = "";
 }
 
 function gameStart() {
+  resetGame();
   gameStarted = true;
   createPipe();
   moveBird();
