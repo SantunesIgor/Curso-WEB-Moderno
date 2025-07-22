@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input,
+        form select,
+        form button {
+            margin: 10px;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Formulário Via Fetch</h1>
+    <form name="usuarioForm" action="formulario" method="post">
+        <input type="text" name="nome" placeholder="Nome..." />
+        <input type="text" name="sobrenome" placeholder="Sobrenome..." />
+        <button type="submit">Salvar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        document.usuarioForm.onsubmit = async e => {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form); // cria um objeto FormData com os dados do formulário
+            data.append('ajax', true); // adiciona um campo extra para indicar que é uma requisição Ajax
+
+            const options = {
+                method: form.method, // define o método HTTP como POST
+                body: new URLSearchParams(data), // define o corpo da requisição como os dados do formulário
+            };
+
+            // fetch(form.action, options)
+            //     .then(response => response.json()) 
+            //     .then(json => {
+            //         const resultado = document.getElementById('resultado');
+            //         resultado.innerHTML = JSON.stringify(json); // exibe a resposta JSON formatada
+            //     })
+            //     .catch(err => {
+            //         const resultado = document.getElementById('resultado');
+            //         resultado.innerHTML = `<p style="color: red;">Erro: ${err.message}</p>`; // exibe uma mensagem de erro
+            //     });
+
+            try {
+                const response = await fetch(form.action, options); // envia a requisição usando Fetch API
+                const json = await response.json(); // aguarda a resposta e converte para JSON
+                resultado.innerHTML = JSON.stringify(json); // exibe a resposta JSON formatada
+            } catch (err) {
+                resultado.innerHTML = `<p style="color: red;">Erro: ${err.message}</p>`; // exibe uma mensagem de erro
+            }
+        }
+    </script>
+</body>

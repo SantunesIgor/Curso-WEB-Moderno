@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API #01</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+      const url = 'dados/estados.json';
+      fetch(url)
+          .then(response => response.json()) // converte a resposta para JSON
+          .then(estados => {
+              const lines = estados.reduce((html, estado) => html + `<li>${estado.nome}</li>`, ''
+          )
+          document.body.insertAdjacentHTML('beforeend', `<ul>${lines}</ul>`);
+          })
+    </script>
+  </body>
+</html>

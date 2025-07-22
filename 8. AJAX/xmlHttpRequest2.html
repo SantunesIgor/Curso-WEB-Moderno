@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        input[type=file] {
+            display: flex;
+            margin: 10px;
+            padding: 40px;
+            font-size: 40px;
+            background: crimson;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <label for="arquivo">Escolha um arquivo:</label>
+    <input type="file" id="file" name="file" title="Selecione um arquivo para upload" />
+    <div class="progresso"></div>
+
+    <script>
+        function ajaxUpload(config){
+            const xhr = new XMLHttpRequest(); // cria o objeto XMLHttpRequest
+
+            if (xhr.upload) {
+                xhr.upload.onprogress = (e) => {
+                    const loaded = e.loaded; // bytes carregados
+                    const total = e.total; // bytes totais
+                    const percent = Math.round((loaded / total) * 100); // porcentagem de progresso
+                    config.progresso({loaded, total, percent}); // chama a função de progresso
+                };
+            }
+
+            xhr.open("POST", config.url, true); // configura o método e a URL, true para assíncrono
+            xhr.send(config.formData); // envia a requisição com os dados do formulário
+        }
+
+        document.querySelector('input[type=file]').onchange = e => {
+            const formData = new FormData();
+            const inputFile = e.target; // obtém o elemento de entrada de arquivo
+            formData.append(e.target.name, e.target.files[0]); // adiciona o arquivo selecionado ao FormData
+
+            ajaxUpload({
+                url: 'upload', // URL do script de upload
+                formData: formData, // dados do formulário
+                progresso: (data) => {
+                    const progresso = document.querySelector('.progresso');
+                    progresso.innerHTML = JSON.stringify(data); // exibe o progresso no elemento .progresso
+                }
+            });
+        }
+    </script>
+</body>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest #01</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+
+  <body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+      // implementação de AJAX de uam forma mais antiga
+      function ajax(config) {
+        const xhr = new XMLHttpRequest(); // cria o objeto XMLHttpRequest
+        xhr.open(config.method, config.url, true); // configura o método e a URL, true para assíncrono
+
+        xhr.onload = (e) => {
+          if (xhr.status === 200) {
+            // verifica se o status da resposta é 200 (OK)
+            // se a requisição for bem-sucedida, chama a função de sucesso
+            config.success(xhr.responseText);
+          } else {
+            // se houver erro, chama a função de erro
+            config.error({ code: xhr.status, text: xhr.statusText });
+          }
+        };
+
+        xhr.send(); // envia a requisição
+      }
+
+      function createTable(estados) {
+        const lines = estados.map((estado) => {
+          const tdID = document.createElement("td"); // cria uma célula de tabela
+          tdID.innerHTML = estado.id; // define o conteúdo da célula como o ID do estado
+
+          const tdNome = document.createElement("td"); // cria outra célula de tabela
+          tdNome.innerHTML = estado.nome; // define o conteúdo da célula como o nome
+
+          const tdSigla = document.createElement("td"); // cria mais uma célula de tabela
+          tdSigla.innerHTML = estado.sigla; // define o conteúdo da célula como a sigla
+
+          const tr = document.createElement("tr"); // cria uma linha de tabela
+          tr.appendChild(tdID); // adiciona a célula de ID à linha
+          tr.appendChild(tdNome); // adiciona a célula de nome à linha
+          tr.appendChild(tdSigla); // adiciona a célula de sigla à linha
+
+          return tr; // retorna a linha completa
+        });
+
+        const table = document.createElement("table"); // cria uma tabela
+        lines.forEach((element) => {
+          table.appendChild(element); // adiciona cada linha à tabela
+        });
+        document.body.appendChild(table); // adiciona a tabela ao corpo do documento
+      }
+
+      ajax({
+        url: "dados/estados.json",
+        method: "GET",
+        success(response) {
+          const estados = JSON.parse(response); // converte a resposta JSON em objeto JavaScript
+          createTable(estados); // chama a função para criar a tabela com os estados
+        },
+        error(e) {
+          const msg = document.createTextNode(`${e.code}: ${e.text}`); // cria um texto com o código e a mensagem de erro
+          document.body.appendChild(msg); // adiciona o texto ao corpo do documento
+        },
+      });
+    </script>
+  </body>
+</html>
